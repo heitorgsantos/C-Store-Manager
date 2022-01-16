@@ -1,6 +1,12 @@
 // não remova esse endpoint, e para o avaliador funcionar
 const express = require('express');
-const { insertProducts } = require('./controller/productsController');
+const {
+  insertProducts,
+  listOneProducts,
+  listAllProdcts,
+  updateProductsController,
+  deleteProductController,
+} = require('./controller/productsController');
 
 const app = express();
 app.use(express.json());
@@ -12,5 +18,13 @@ app.get('/', (_request, response) => {
 });
 
 app.post('/products', insertProducts);
+
+app.get('/products/:id', listOneProducts);
+
+app.get('/products', listAllProdcts);
+
+app.put('/products/:id', updateProductsController);
+
+app.delete('/products/:id', deleteProductController);
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
