@@ -1,5 +1,9 @@
 // const Joi = require('@hapi/joi');
-const { insertSalesModel } = require('../models/salesModel');
+const {
+   insertSalesModel,
+   findAllSalesModel,
+   findOneSalesModel,
+ } = require('../models/salesModel');
 
 const danger = (code = 'invalid_data', message, status = 422) => ({
   err: {
@@ -24,6 +28,20 @@ const danger = (code = 'invalid_data', message, status = 422) => ({
   return danger(undefined, 'Wrong product ID or invalid quantity', 422);
  };
 
+ const findAllService = async () => {
+   const sales = await findAllSalesModel();
+   if (!sales) danger('not_found', 'Sale not found', 404);
+   return sales;
+ };
+
+ const findOneService = async (id) => {
+   const sales = await findOneSalesModel(id);
+   if (!sales) return danger('not_found', 'Sale not found', 404);
+   return sales;
+ };
+
  module.exports = {
    insertSalesSerive,
+   findAllService,
+   findOneService,
  };

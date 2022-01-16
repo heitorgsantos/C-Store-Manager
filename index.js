@@ -8,7 +8,7 @@ const {
   deleteProductController,
 } = require('./controller/productsController');
  const {
-   insertSalesController,
+   insertSalesController, findAllController, findOneController,
  } = require('./controller/salesController');
 
 const app = express();
@@ -31,5 +31,9 @@ app.put('/products/:id', updateProductsController);
 app.delete('/products/:id', deleteProductController);
 
 app.post('/sales', insertSalesController);
+
+app.get('/sales', findAllController);
+
+app.get('/sales/:id', findOneController);
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
