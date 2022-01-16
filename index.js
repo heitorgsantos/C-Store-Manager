@@ -7,6 +7,9 @@ const {
   updateProductsController,
   deleteProductController,
 } = require('./controller/productsController');
+ const {
+   insertSalesController,
+ } = require('./controller/salesController');
 
 const app = express();
 app.use(express.json());
@@ -26,5 +29,7 @@ app.get('/products', listAllProdcts);
 app.put('/products/:id', updateProductsController);
 
 app.delete('/products/:id', deleteProductController);
+
+app.post('/sales', insertSalesController);
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
