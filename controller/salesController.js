@@ -12,19 +12,21 @@ const insertSalesController = async (req, res, _next) => {
   }
 };
 
-const findAllController = async (res) => {
+const findAllController = async (_req, res) => {
   try {
     const sale = await findAllService();
     return res.status(200).json({ sales: sale });
   } catch (error) {
-    console.log(error.message);
+    console.log(error.message, 'entrou no catch');
   }
 };
 
 const findOneController = async (req, res) => {
   const { id } = req.params;
   try {
-    const sale = await findOneService(id);
+    const { err, sale } = await findOneService(id);
+    if (err) return res.status(404).json({ err }); 
+    console.log(sale);
     return res.status(200).json({ sales: sale });
   } catch (error) {
     return error.message;

@@ -13,6 +13,7 @@ const insertSalesModel = async (itensSold) => {
 const findAllSalesModel = async () => {
   const conn = await connect();
   const sales = await conn.collection('sales').find({}).toArray();
+  console.log(sales, 'sales model');
   return sales;
 };
 const findOneSalesModel = async (id) => {

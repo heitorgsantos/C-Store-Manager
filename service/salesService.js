@@ -31,13 +31,15 @@ const danger = (code = 'invalid_data', message, status = 422) => ({
  const findAllService = async () => {
    const sales = await findAllSalesModel();
    if (!sales) danger('not_found', 'Sale not found', 404);
+   console.log(sales, 'sales seervice');
    return sales;
- };
+ }; 
 
  const findOneService = async (id) => {
-   const sales = await findOneSalesModel(id);
-   if (!sales) return danger('not_found', 'Sale not found', 404);
-   return sales;
+   const sale = await findOneSalesModel(id);
+   if (!sale) return danger('not_found', 'Sale not found', 404);
+   console.log(sale);
+   return { sale };
  };
 
  module.exports = {
