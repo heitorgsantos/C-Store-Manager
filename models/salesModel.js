@@ -27,7 +27,6 @@ const updateSalesModel = async (itensSold, id) => {
   const conn = await connect();
   const sales = await conn.collection('sales')
   .replaceOne({ _id: ObjectId(id) }, { itensSold });
-  console.log(sales, 'entrou no model');
   return sales;
 };
 

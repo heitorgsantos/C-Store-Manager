@@ -72,8 +72,7 @@ const danger = (code = 'invalid_data', message, status = 422) => ({
     _id: id,
     ...ops[0],
   };
-  console.log(sales);
-  return sales;
+  return { sales };
   // return danger(undefined, 'Wrong product ID or invalid quantity', 422);
  };
 
