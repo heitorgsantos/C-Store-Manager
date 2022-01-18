@@ -30,9 +30,16 @@ const updateSalesModel = async (itensSold, id) => {
   return sales;
 };
 
+const deleteSalesModel = async (id) => {
+  const conn = await connect();
+  const sales = conn.collection('sales').deleteOne({ _id: ObjectId(id) });
+  return sales;
+};
+
 module.exports = {
   insertSalesModel,
   findAllSalesModel,
   findOneSalesModel,
   updateSalesModel,
+  deleteSalesModel,
 };

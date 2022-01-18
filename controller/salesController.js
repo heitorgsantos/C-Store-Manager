@@ -2,7 +2,8 @@ const {
   insertSalesSerive, 
   findAllService, 
   findOneService, 
-  updateSalesService } = require('../service/salesService');
+  updateSalesService, 
+  deleteSalesService } = require('../service/salesService');
 
 const insertSalesController = async (req, res, _next) => {
   const itensSold = req.body;
@@ -49,9 +50,21 @@ const updateSalesController = async (req, res) => {
   }
 };
 
+const deleteSalesController = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { err, sale } = await deleteSalesService(id);
+    if (err) return res.status(422).json({ err });
+    return res.status(200).json(sale);
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
   insertSalesController,
   findAllController,
   findOneController,
   updateSalesController,
+  deleteSalesController,
 };

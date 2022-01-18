@@ -4,6 +4,7 @@ const {
    findAllSalesModel,
    findOneSalesModel,
    updateSalesModel,
+   deleteSalesModel,
  } = require('../models/salesModel');
 
  const salesSchema = Joi.array().items(Joi.object({
@@ -76,9 +77,17 @@ const danger = (code = 'invalid_data', message, status = 422) => ({
   // return danger(undefined, 'Wrong product ID or invalid quantity', 422);
  };
 
+ const deleteSalesService = async (id) => {
+   if (id.length !== 24) return danger(undefined, 'Wrong sale ID format', 422);
+   const sale = await deleteSalesModel(id);
+   if (!sale) return danger(undefined, 'Wrong sale ID format', 422);
+   return { sale };
+ };
+
  module.exports = {
    insertSalesSerive,
    findAllService,
    findOneService,
    updateSalesService,
+   deleteSalesService,
  };
