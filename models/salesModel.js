@@ -13,7 +13,6 @@ const insertSalesModel = async (itensSold) => {
 const findAllSalesModel = async () => {
   const conn = await connect();
   const sales = await conn.collection('sales').find({}).toArray();
-  console.log(sales, 'sales model');
   return sales;
 };
 const findOneSalesModel = async (id) => {
@@ -23,8 +22,18 @@ const findOneSalesModel = async (id) => {
   return sales;
 };
 
+const updateSalesModel = async (itensSold, id) => {
+  // if (!ObjectId.isValid(id)) return null;
+  const conn = await connect();
+  const sales = await conn.collection('sales')
+  .replaceOne({ _id: ObjectId(id) }, { itensSold });
+  console.log(sales, 'entrou no model');
+  return sales;
+};
+
 module.exports = {
   insertSalesModel,
   findAllSalesModel,
   findOneSalesModel,
+  updateSalesModel,
 };
