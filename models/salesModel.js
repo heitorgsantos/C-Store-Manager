@@ -15,6 +15,7 @@ const findAllSalesModel = async () => {
   const sales = await conn.collection('sales').find({}).toArray();
   return sales;
 };
+
 const findOneSalesModel = async (id) => {
   if (!ObjectId.isValid(id)) return null;
   const conn = await connect();

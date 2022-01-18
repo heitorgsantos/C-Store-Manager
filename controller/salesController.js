@@ -4,7 +4,7 @@ const {
   findOneService, 
   updateSalesService, 
   deleteSalesService } = require('../service/salesService');
-
+// criar sales
 const insertSalesController = async (req, res, _next) => {
   const itensSold = req.body;
   
