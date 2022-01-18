@@ -1,4 +1,8 @@
-const { insertSalesSerive, findAllService, findOneService, updateSalesService } = require('../service/salesService');
+const { 
+  insertSalesSerive, 
+  findAllService, 
+  findOneService, 
+  updateSalesService } = require('../service/salesService');
 
 const insertSalesController = async (req, res, _next) => {
   const itensSold = req.body;
