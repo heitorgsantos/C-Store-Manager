@@ -49,7 +49,6 @@ const danger = (code = 'invalid_data', message, status = 422) => ({
  const findOneService = async (id) => {
    const sale = await findOneSalesModel(id);
    if (!sale) return danger('not_found', 'Sale not found', 404);
-   console.log(sale);
    return { sale };
  };
 

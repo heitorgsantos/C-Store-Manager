@@ -22,7 +22,7 @@ const findAllController = async (_req, res) => {
     const sale = await findAllService();
     return res.status(200).json({ sales: sale });
   } catch (error) {
-    console.log(error.message, 'entrou no catch');
+    return error.message;
   }
 };
 
